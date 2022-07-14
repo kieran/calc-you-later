@@ -2,10 +2,10 @@
   "name": "calc-you-later",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx parcel serve index.html"
+    "start": "npx parcel serve index.html",
+    "build": "npx parcel build index.html"
   },
   "author": "",
   "license": "ISC",

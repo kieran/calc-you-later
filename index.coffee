@@ -11,6 +11,15 @@ class CalcYouLater extends Component
       op:     null
       right:  null
 
+  componentDidMount: =>
+    document.addEventListener 'keyup', @keyUp
+
+  componentWillUnmount: =>
+    document.removeEventListener 'keyup', @keyUp
+
+  keyUp: ({key})=>
+    @send key
+
   solve: (str)=>
     {left, op, right} = @state
     return unless left and op and right
@@ -54,10 +63,14 @@ class CalcYouLater extends Component
 
   send: (cmd)=>
     switch cmd
-      when 'C'    then @clear()
-      when '+/-'  then @invert()
-      when '%'    then @percentify()
-      when '='    then @solve()
+      when 'C', 'c', 'Clear'
+        @clear()
+      when '+/-'
+        @invert()
+      when '%'
+        @percentify()
+      when '=', 'Enter'
+        @solve()
       when '+', '-', '/', '*'
         if @state.right?.length # solve, then set new op
           @solve()
@@ -66,8 +79,8 @@ class CalcYouLater extends Component
           @setState op: cmd # potentially overwrite op
       when '.'
         @append cmd unless cmd in @display()
-      else # numbers, decimal
-        @append cmd
+      else # numbers
+        @append cmd if cmd is "#{parseFloat cmd}"
 
   display: =>
     {right, left} = @state

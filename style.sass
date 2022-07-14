@@ -1,0 +1,35 @@
+body
+  margin: 0
+  padding: 0
+.CalcYouLater
+  background: black
+  color: white
+  width: 300px
+  height: 550px
+  padding: 1em
+  .screen
+    padding: 0.5em
+    text-align: right
+    font-family: sans-serif
+    font-size: 3em
+  .keyboard
+    zoom: 1.2
+    text-align: center
+    button
+      border: 0
+      width: 50px
+      height: 50px
+      border-radius: 25px
+      font-size: 1.5em
+      margin: 5px
+      &.key0
+        width: 110px
+      &.key0, &.key1, &.key2, &.key3, &.key4, &.key5, &.key6, &.key7, &.key8, &.key9, &.keydot
+        background: #444
+        color: white
+      &.keyC, &.keysign, &.keypercent
+        background: #aaa
+        color: black
+      &.keydivide, &.keytimes, &.keyminus, &.keyplus, &.keyequals
+        background: orange
+        color: white

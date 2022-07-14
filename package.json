@@ -1,0 +1,23 @@
+{
+  "name": "calc-you-later",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx parcel serve index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "coffeescript": "^2.7.0",
+    "parcel": "^2.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-coffeescript": "^2.6.2",
+    "@parcel/transformer-sass": "^2.6.2",
+    "process": "^0.11.10"
+  }
+}

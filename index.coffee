@@ -15,8 +15,18 @@ class CalcYouLater extends Component
     {left, op, right} = @state
     return unless left and op and right
 
+    left =  parseFloat left
+    right = parseFloat right
+
+    val = \
+    switch op
+      when '+' then left + right
+      when '-' then left - right
+      when '*' then left * right
+      when '/' then left / right
+
     @setState(
-      left:   eval([parseFloat(left), op, parseFloat(right)].join ' ').toString()
+      left:   "#{val}"
       op:     null
       right:  null
     )
@@ -27,20 +37,20 @@ class CalcYouLater extends Component
 
   append: (val)=>
     target = @writeTarget()
-    @setState "#{target}": [@state["#{target}"],val].join ''
+    @setState "#{target}": "#{@state[target] or ''}#{val}"
 
   invert: =>
     target = @writeTarget()
-    return unless @state["#{target}"]?
-    @setState "#{target}": (parseFloat(@state["#{target}"]) * -1).toString()
+    return unless @state[target]?
+    @setState "#{target}": "#{-1 * parseFloat @state[target]}"
 
   clear: =>
     @setState left: null, op: null, right: null
 
   percentify: =>
     target = @writeTarget()
-    return unless @state["#{target}"]?
-    @setState "#{target}": (parseFloat(@state["#{target}"]) / 100).toString()
+    return unless @state[target]?
+    @setState "#{target}": "#{1/100 * parseFloat @state[target]}"
 
   send: (cmd)=>
     switch cmd

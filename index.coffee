@@ -53,6 +53,9 @@ class CalcYouLater extends Component
     return unless @state[target]?
     @setState "#{target}": "#{-1 * parseFloat @state[target]}"
 
+  setOp: (op)=>
+    @setState { op }
+
   clear: =>
     @setState left: null, op: null, right: null
 
@@ -72,15 +75,12 @@ class CalcYouLater extends Component
       when '=', 'Enter'
         @solve()
       when '+', '-', '/', '*'
-        if @state.right?.length # solve, then set new op
-          @solve()
-          @setState op: cmd # potentially overwrite op
-        else if @state.left?.length
-          @setState op: cmd # potentially overwrite op
+        @solve()    # try to solve if possible
+        @setOp cmd  # potentially overwrite op
       when '.'
         @append cmd unless cmd in @display()
       else # numbers
-        @append cmd if cmd is "#{parseFloat cmd}"
+        @append cmd if "#{cmd}" is "#{parseFloat cmd}"
 
   display: =>
     {right, left} = @state

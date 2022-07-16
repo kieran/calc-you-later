@@ -20,7 +20,7 @@ class CalcYouLater extends Component
   keyUp: ({key})=>
     @send key
 
-  solve: (str)=>
+  solve: =>
     {left, op, right} = @state
     return unless left and op and right
 
@@ -46,6 +46,10 @@ class CalcYouLater extends Component
 
   append: (val)=>
     target = @writeTarget()
+
+    # don't allow edits to Infinity or NaN (which are valid Numbers)
+    return unless Number.isInteger parseFloat @state[target] or 0
+
     @setState "#{target}": "#{@state[target] or ''}#{val}"
 
   invert: =>

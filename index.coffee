@@ -70,9 +70,9 @@ class CalcYouLater extends Component
 
   send: (cmd)=>
     switch cmd
-      when 'C', 'c', 'Clear'
+      when 'C', 'c', 'Clear', 'Backspace', 'Delete'
         @clear()
-      when '+/-'
+      when '+/-', 'i'
         @invert()
       when '%'
         @percentify()

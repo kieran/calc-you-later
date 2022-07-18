@@ -3,21 +3,27 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx parcel serve index.html",
-    "build": "npx parcel build index.html"
+    "start": "parcel serve index.html",
+    "build": "parcel build index.html",
+    "specs": "concurrently -k \"npm start\" \"npm run test\"",
+    "test": "mocha --timeout=10000 --require coffeescript/register test.coffee",
+    "test:watch": "mocha --timeout=10000 --watch-extensions coffee --watch --require coffeescript/register test.coffee"
   },
-  "author": "",
+  "author": "Kieran Huggins",
   "license": "ISC",
   "dependencies": {
-    "coffeescript": "^2.7.0",
-    "parcel": "^2.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@parcel/transformer-coffeescript": "^2.6.2",
     "@parcel/transformer-sass": "^2.6.2",
-    "process": "^0.11.10"
+    "chai": "^4.3.6",
+    "coffeescript": "^2.7.0",
+    "concurrently": "^7.2.2",
+    "mocha": "^10.0.0",
+    "parcel": "^2.6.2",
+    "process": "^0.11.10",
+    "puppeteer": "^15.4.0"
   }
 }
